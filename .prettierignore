@@ -2,3 +2,9 @@
 /ios
 /node_modules
 /.bundle
+/.idea
+/.vscode
+/.expo
+/.expo-shared
+/.git
+/assets
