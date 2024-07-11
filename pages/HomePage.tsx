@@ -24,20 +24,16 @@ function HomePage() {
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Title>Pokedex</Title>
-          <Text style={styles.subTitle}>
-            Cerca un pokemo tramite nome o numero del pokedex
-          </Text>
-          <SearchBar />
-        </View>
-      </ScrollView>
+      <View
+        style={{
+          backgroundColor: isDarkMode ? Colors.black : Colors.white,
+        }}>
+        <Title>Pokedex</Title>
+        <Text style={styles.subTitle}>
+          Cerca un pokemo tramite nome o numero del pokedex
+        </Text>
+        <SearchBar />
+      </View>
       <ListCard />
     </SafeAreaView>
   );
