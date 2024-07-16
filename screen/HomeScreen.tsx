@@ -10,7 +10,7 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {ListCard, SearchBar, Title} from '../components';
 import React from 'react';
 
-function HomePage() {
+function HomeScreen() {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
@@ -64,4 +64,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomePage;
+export default HomeScreen;
