@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Text, Image, StyleSheet} from 'react-native';
 import {useQuery} from '@tanstack/react-query';
+import colours from '../constants/colors.ts';
 
 interface CardProps {
   id: string;
@@ -32,12 +33,12 @@ const Card = ({id, name, imageUrl}: CardProps) => {
 
 const styles = StyleSheet.create({
   card: {
-    // backgroundColor: '#E0F7FA',
     borderRadius: 10,
     alignItems: 'center',
     padding: 20,
     margin: 10,
     width: 150,
+    height: 194,
     shadowColor: '#000',
     shadowOpacity: 0.1,
     shadowOffset: {width: 0, height: 2},
@@ -60,30 +61,5 @@ const styles = StyleSheet.create({
     fontFamily: 'Nunito-Regular',
   },
 });
-
-type Colours = {
-  [key: string]: string;
-};
-
-const colours: Colours = {
-  normal: '#A8A77A',
-  fire: '#EE8130',
-  water: '#6390F0',
-  electric: '#F7D02C',
-  grass: '#7AC74C',
-  ice: '#96D9D6',
-  fighting: '#C22E28',
-  poison: '#A33EA1',
-  ground: '#E2BF65',
-  flying: '#A98FF3',
-  psychic: '#F95587',
-  bug: '#A6B91A',
-  rock: '#B6A136',
-  ghost: '#735797',
-  dragon: '#6F35FC',
-  dark: '#705746',
-  steel: '#B7B7CE',
-  fairy: '#D685AD',
-};
 
 export default Card;

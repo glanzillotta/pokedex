@@ -1,6 +1,5 @@
 import {
   SafeAreaView,
-  ScrollView,
   StatusBar,
   StyleSheet,
   Text,
@@ -26,23 +25,25 @@ function HomePage() {
       />
       <View
         style={{
+          ...styles.sectionContainer,
           backgroundColor: isDarkMode ? Colors.black : Colors.white,
         }}>
         <Title>Pokedex</Title>
         <Text style={styles.subTitle}>
-          Cerca un pokemo tramite nome o numero del pokedex
+          Cerca un pokemon tramite nome o numero del pokedex
         </Text>
         <SearchBar />
+        <ListCard />
       </View>
-      <ListCard />
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   sectionContainer: {
-    marginTop: 32,
     paddingHorizontal: 24,
+    gap: 10,
+    height: '100%',
   },
   sectionTitle: {
     fontSize: 24,
