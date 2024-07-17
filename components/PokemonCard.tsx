@@ -1,15 +1,31 @@
 import React from 'react';
-import {View, Text, Image, StyleSheet} from 'react-native';
+import {
+  GestureResponderEvent,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableWithoutFeedback,
+  View,
+} from 'react-native';
 import {useQuery} from '@tanstack/react-query';
 import colours from '../constants/colors.ts';
+import Icon from 'react-native-vector-icons/FontAwesome6';
 
 interface CardProps {
   id: string;
   name: string;
   imageUrl?: string;
+  isFavourite?: boolean;
+  onPressFavourite?: (event: GestureResponderEvent) => void;
 }
 
-const Card = ({id, name, imageUrl}: CardProps) => {
+const PokemonCard = ({
+  id,
+  name,
+  imageUrl,
+  onPressFavourite,
+  isFavourite = false,
+}: CardProps) => {
   const {data} = useQuery({
     queryKey: ['pokemon-type', id],
     queryFn: async () => {
@@ -24,6 +40,15 @@ const Card = ({id, name, imageUrl}: CardProps) => {
         ...styles.card,
         backgroundColor: colours[data?.types[0]?.type?.name],
       }}>
+      <TouchableWithoutFeedback onPress={onPressFavourite}>
+        <Icon
+          name="heart"
+          size={20}
+          color="#CB2222FF"
+          style={styles.favourite}
+          solid={isFavourite}
+        />
+      </TouchableWithoutFeedback>
       <Image source={{uri: imageUrl}} style={styles.image} />
       <Text style={styles.name}>{name}</Text>
       <Text style={styles.number}>{id.padStart(3, '0')}</Text>
@@ -60,6 +85,11 @@ const styles = StyleSheet.create({
     color: '#999',
     fontFamily: 'Nunito-Regular',
   },
+  favourite: {
+    position: 'absolute',
+    top: 10,
+    right: 10,
+  },
 });
 
-export default Card;
+export default PokemonCard;
