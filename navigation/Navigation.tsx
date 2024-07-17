@@ -1,11 +1,9 @@
 import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {HomeScreen, FavoriteScreen} from '../screen';
+import {FavoriteScreen, HomeScreen} from '../screen';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/FontAwesome6';
 import React from 'react';
 
-const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
 function Navigation() {
