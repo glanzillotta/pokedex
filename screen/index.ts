@@ -1,4 +1,4 @@
-import HomeScreen from './HomeScreen.tsx';
-import FavoriteScreen from './FavouriteScreen.tsx';
+import HomeScreen from './HomeScreen';
+import FavoriteScreen from './FavouriteScreen';
 
 export {HomeScreen, FavoriteScreen};

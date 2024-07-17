@@ -1,33 +1,11 @@
-import {
-  SafeAreaView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
-import {Colors} from 'react-native/Libraries/NewAppScreen';
+import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import {ListCard, SearchBar, Title} from '../components';
 import React from 'react';
 
 function HomeScreen() {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.white,
-  };
-
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <View
-        style={{
-          ...styles.sectionContainer,
-          backgroundColor: isDarkMode ? Colors.black : Colors.white,
-        }}>
+    <SafeAreaView style={{backgroundColor: '#fff'}}>
+      <View style={styles.sectionContainer}>
         <Title>Pokedex</Title>
         <Text style={styles.subTitle}>
           Cerca un pokemon tramite nome o numero del pokedex
