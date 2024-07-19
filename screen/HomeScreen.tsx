@@ -4,7 +4,7 @@ import React from 'react';
 
 function HomeScreen() {
   return (
-    <SafeAreaView style={{backgroundColor: '#fff'}}>
+    <SafeAreaView style={styles.pageContainer}>
       <View style={styles.sectionContainer}>
         <Title>Pokedex</Title>
         <Text style={styles.subTitle}>
@@ -18,6 +18,9 @@ function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
+  pageContainer: {
+    backgroundColor: '#fff',
+  },
   sectionContainer: {
     paddingHorizontal: 24,
     gap: 10,

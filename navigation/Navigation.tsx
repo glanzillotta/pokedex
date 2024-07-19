@@ -6,6 +6,9 @@ import React from 'react';
 
 const Tab = createBottomTabNavigator();
 
+const renderHouseIcon = () => <Icon name="house" size={20} color="#333" />;
+const renderHeartIcon = () => <Icon name="heart" size={20} color="#333" />;
+
 function Navigation() {
   return (
     <NavigationContainer>
@@ -23,7 +26,7 @@ function Navigation() {
           component={HomeScreen}
           options={{
             headerShown: false,
-            tabBarIcon: () => <Icon name="house" size={20} color="#333" />,
+            tabBarIcon: renderHouseIcon,
           }}
         />
         <Tab.Screen
@@ -31,9 +34,7 @@ function Navigation() {
           component={FavoriteScreen}
           options={{
             headerShown: false,
-            tabBarIcon: () => (
-              <Icon name="heart" size={20} color="#333" solid />
-            ),
+            tabBarIcon: renderHeartIcon,
           }}
         />
       </Tab.Navigator>

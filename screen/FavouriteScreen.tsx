@@ -1,4 +1,4 @@
-import {SafeAreaView, Text, View} from 'react-native';
+import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {RootState} from '../store/store.ts';
 import useAppSelector from '../hooks/useSelector.ts';
@@ -8,7 +8,7 @@ function FavouriteScreen() {
     (state: RootState) => state.pokemon.pokemonList,
   );
   return (
-    <SafeAreaView style={{backgroundColor: '#fff'}}>
+    <SafeAreaView style={styles.pageContainer}>
       <View>
         {pokemon.map(item => (
           <Text>{item.name}</Text>
@@ -17,5 +17,11 @@ function FavouriteScreen() {
     </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  pageContainer: {
+    backgroundColor: '#fff',
+  },
+});
 
 export default FavouriteScreen;
