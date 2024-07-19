@@ -7,8 +7,6 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import {useQuery} from '@tanstack/react-query';
-import colours from '../constants/colors.ts';
 import Icon from 'react-native-vector-icons/FontAwesome6';
 
 interface CardProps {
@@ -16,29 +14,23 @@ interface CardProps {
   name: string;
   imageUrl?: string;
   isFavourite?: boolean;
+  backgroundColor?: string;
   onPressFavourite?: (event: GestureResponderEvent) => void;
 }
 
-const PokemonCard = ({
+const Card = ({
   id,
   name,
   imageUrl,
   onPressFavourite,
+  backgroundColor,
   isFavourite = false,
 }: CardProps) => {
-  const {data} = useQuery({
-    queryKey: ['pokemon-type', id],
-    queryFn: async () => {
-      const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`);
-      return response.json();
-    },
-  });
-
   return (
     <View
       style={{
         ...styles.card,
-        backgroundColor: colours[data?.types[0]?.type?.name],
+        backgroundColor,
       }}>
       <TouchableWithoutFeedback onPress={onPressFavourite}>
         <Icon
@@ -90,4 +82,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PokemonCard;
+export default Card;

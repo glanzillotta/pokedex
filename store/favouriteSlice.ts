@@ -1,6 +1,6 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
-interface Pokemon {
+export interface Pokemon {
   name: string;
   url: string;
 }

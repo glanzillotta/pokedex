@@ -1,6 +1,6 @@
-import PokemonCard from './PokemonCard.tsx';
+import {PokemonCard} from '../components';
 import {useInfiniteQuery} from '@tanstack/react-query';
-import React, {useCallback, useRef} from 'react';
+import React, {useRef} from 'react';
 import {
   ActivityIndicator,
   FlatList,
@@ -11,7 +11,6 @@ import {
 import {RootState} from '../store/store.ts';
 import useAppSelector from '../hooks/useSelector.ts';
 import useDispatch from '../hooks/useDispatch.ts';
-import {addPokemon, removePokemon} from '../store/favouriteSlice.ts';
 
 interface Pokemon {
   name: string;
@@ -85,30 +84,9 @@ function ListCard() {
   //   }
   // };
 
-  const renderItem = useCallback(
-    ({item}: ListRenderItemInfo<Pokemon>) => {
-      const handelFavourite = () => {
-        if (pokemon.find(poke => poke.name === item.name)) {
-          dispatch(removePokemon(item));
-        } else {
-          dispatch(addPokemon(item));
-        }
-      };
-
-      return (
-        <PokemonCard
-          name={item.name}
-          id={item.url.split('/').slice(-2)[0]}
-          imageUrl={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
-            item.url.split('/').slice(-2)[0]
-          }.png`}
-          onPressFavourite={handelFavourite}
-          isFavourite={!!pokemon.find(poke => poke.name === item.name)}
-        />
-      );
-    },
-    [dispatch, pokemon],
-  );
+  const renderItem = ({item}: ListRenderItemInfo<Pokemon>) => {
+    return <PokemonCard pokemon={item} key={item.name} />;
+  };
 
   // useEffect(() => {
   //   if (flatListRef.current && scrollOffset !== 0 && isFetchingNextPage) {
