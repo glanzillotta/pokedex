@@ -15,6 +15,18 @@ interface PokemonCardProps {
   pokemon: Pokemon;
 }
 
+interface Type {
+  name: string;
+}
+
+interface PokemonType {
+  type: Type;
+}
+
+interface Response {
+  types: PokemonType[];
+}
+
 const PokemonCard = ({pokemon}: PokemonCardProps) => {
   const dispatch = useDispatch();
   const pokemonList = useAppSelector(
@@ -23,7 +35,7 @@ const PokemonCard = ({pokemon}: PokemonCardProps) => {
 
   const id = pokemon.url.split('/').slice(-2)[0];
 
-  const {data} = useQuery({
+  const {data} = useQuery<Response, Pokemon>({
     queryKey: ['pokemon-type', pokemon.name],
     queryFn: async () => {
       const response = await fetch(
@@ -32,6 +44,21 @@ const PokemonCard = ({pokemon}: PokemonCardProps) => {
       return response.json();
     },
   });
+
+  const getBackgroundColor = () => {
+    let background;
+    if (data && data.types.length > 1) {
+      const typeName1 = data.types[0].type.name;
+      const typeName2 = data.types[1].type.name;
+
+      background = [colours[typeName1], colours[typeName2]];
+    } else {
+      const typeName = data?.types?.[0]?.type?.name;
+      background = typeName ? colours[typeName] : colours.normal;
+    }
+
+    return background;
+  };
 
   const handelFavourite = () => {
     if (pokemonList.find(p => p.name === pokemon.name)) {
@@ -48,7 +75,7 @@ const PokemonCard = ({pokemon}: PokemonCardProps) => {
       imageUrl={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`}
       onPressFavourite={handelFavourite}
       isFavourite={!!pokemonList.find(p => p.name === pokemon.name)}
-      backgroundColor={colours[data?.types[0].type.name]}
+      backgroundColor={getBackgroundColor()}
     />
   );
 };
