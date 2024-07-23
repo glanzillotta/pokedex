@@ -15,7 +15,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 function FavouriteScreen() {
   const pokemon = useAppSelector(
-    (state: RootState) => state.favourite.pokemonList,
+    (state: RootState) => state.favourites.pokemonList,
   );
   return (
     <SafeAreaView style={styles.pageContainer}>
