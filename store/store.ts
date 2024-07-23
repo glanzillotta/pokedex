@@ -1,9 +1,9 @@
 import {configureStore} from '@reduxjs/toolkit';
-import pokemonReducer from './favouriteSlice.ts';
+import favouriteReducer from './favouriteSlice.ts';
 
 export const store = configureStore({
   reducer: {
-    pokemon: pokemonReducer,
+    favourites: favouriteReducer,
   },
 });
 

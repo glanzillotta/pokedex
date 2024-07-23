@@ -30,7 +30,7 @@ interface Response {
 const PokemonCard = ({pokemon}: PokemonCardProps) => {
   const dispatch = useDispatch();
   const pokemonList = useAppSelector(
-    (state: RootState) => state.pokemon.pokemonList,
+    (state: RootState) => state.favourites.pokemonList,
   );
 
   const id = pokemon.url.split('/').slice(-2)[0];
