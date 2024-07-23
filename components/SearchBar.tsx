@@ -1,8 +1,19 @@
 import React from 'react';
-import {View, TextInput, TouchableOpacity, StyleSheet} from 'react-native';
+import {
+  NativeSyntheticEvent,
+  StyleSheet,
+  TextInput,
+  TextInputChangeEventData,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-const SearchBar = () => {
+interface SearchBarProps {
+  onChange?: (e: NativeSyntheticEvent<TextInputChangeEventData>) => void;
+}
+
+const SearchBar = ({onChange}: SearchBarProps) => {
   return (
     <View style={styles.container}>
       <View style={styles.inputContainer}>
@@ -11,6 +22,7 @@ const SearchBar = () => {
           style={styles.input}
           placeholder="Name or number"
           placeholderTextColor="#999"
+          onChange={onChange}
         />
       </View>
       <TouchableOpacity style={styles.button}>
@@ -19,7 +31,6 @@ const SearchBar = () => {
     </View>
   );
 };
-
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
