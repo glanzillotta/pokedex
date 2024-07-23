@@ -1,5 +1,5 @@
 import {SafeAreaView, StyleSheet, Text, View} from 'react-native';
-import {ListCard, SearchBar, Title} from '../components';
+import {ListCard, Title} from '../components';
 import React from 'react';
 
 function HomeScreen() {
@@ -10,7 +10,6 @@ function HomeScreen() {
         <Text style={styles.subTitle}>
           Cerca un pokemon tramite nome o numero del pokedex
         </Text>
-        <SearchBar />
         <ListCard />
       </View>
     </SafeAreaView>
@@ -20,6 +19,7 @@ function HomeScreen() {
 const styles = StyleSheet.create({
   pageContainer: {
     backgroundColor: '#fff',
+    paddingTop: 10,
   },
   sectionContainer: {
     paddingHorizontal: 24,

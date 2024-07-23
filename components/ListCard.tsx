@@ -8,9 +8,6 @@ import {
   StyleSheet,
   Text,
 } from 'react-native';
-import {RootState} from '../store/store.ts';
-import useAppSelector from '../hooks/useSelector.ts';
-import useDispatch from '../hooks/useDispatch.ts';
 
 interface Pokemon {
   name: string;
@@ -22,10 +19,10 @@ interface Pokemon {
 function ListCard() {
   const flatListRef = useRef<FlatList<Pokemon>>(null);
   // const [scrollOffset, setScrollOffset] = useState(0);
-  const dispatch = useDispatch();
-  const pokemon = useAppSelector(
-    (state: RootState) => state.pokemon.pokemonList,
-  );
+  // const dispatch = useDispatch();
+  // const pokemon = useAppSelector(
+  //   (state: RootState) => state.pokemon.pokemonList,
+  // );
 
   const {
     data,
