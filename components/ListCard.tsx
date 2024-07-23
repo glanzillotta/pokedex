@@ -7,7 +7,10 @@ import {
   ListRenderItemInfo,
   StyleSheet,
   Text,
+  TouchableWithoutFeedback,
+  View,
 } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 interface Pokemon {
   name: string;
@@ -33,6 +36,10 @@ function ListCard() {
     // fetchPreviousPage,
     hasNextPage,
     // hasPreviousPage,
+    isError,
+    isSuccess,
+    isLoading,
+    refetch,
   } = useInfiniteQuery({
     queryKey: ['pokemon-list'],
     queryFn: async ({pageParam}) => {
@@ -105,37 +112,67 @@ function ListCard() {
   //   isFetchingPreviousPage,
   //   scrollOffset,
   // ]);
-
+  console.log(isSuccess, isError);
   return (
-    <FlatList
-      ref={flatListRef}
-      numColumns={2}
-      data={data?.pages.flatMap(page => page?.results) || []}
-      renderItem={renderItem}
-      key={2}
-      // getItemLayout={(_, index) => ({
-      //   length: ITEM_HEIGHT,
-      //   offset: ITEM_HEIGHT * index,
-      //   index,
-      // })}
-      keyExtractor={item => item.url.split('/').slice(-2)[0]}
-      onEndReached={handleEndReached}
-      onEndReachedThreshold={0.5}
-      // onStartReachedThreshold={0.2}
-      scrollEventThrottle={16}
-      initialNumToRender={8}
-      // onScroll={handleScroll}
-      // onStartReached={handleStartReached}
-      ListFooterComponent={renderFooter}
-      ListHeaderComponent={renderHeader}
-      contentContainerStyle={styles.listContent}
-      maxToRenderPerBatch={8}
-    />
+    <>
+      {isSuccess && (
+        <FlatList
+          ref={flatListRef}
+          numColumns={2}
+          data={data?.pages.flatMap(page => page?.results) || []}
+          renderItem={renderItem}
+          key={2}
+          // getItemLayout={(_, index) => ({
+          //   length: ITEM_HEIGHT,
+          //   offset: ITEM_HEIGHT * index,
+          //   index,
+          // })}
+          keyExtractor={item => item.url.split('/').slice(-2)[0]}
+          onEndReached={handleEndReached}
+          onEndReachedThreshold={0.5}
+          // onStartReachedThreshold={0.2}
+          scrollEventThrottle={16}
+          initialNumToRender={8}
+          // onScroll={handleScroll}
+          // onStartReached={handleStartReached}
+          ListFooterComponent={renderFooter}
+          ListHeaderComponent={renderHeader}
+          contentContainerStyle={styles.listContent}
+          maxToRenderPerBatch={8}
+        />
+      )}
+      {isError && !data && (
+        <View style={styles.refreshContainer}>
+          <Text>Qualcosa è andato storto</Text>
+          <Text>Riprova</Text>
+          <TouchableWithoutFeedback onPress={() => refetch()}>
+            <Icon name={'refresh'} size={30} color="#333" />
+          </TouchableWithoutFeedback>
+        </View>
+      )}
+      {isLoading && (
+        <View style={styles.loadingContainer}>
+          <ActivityIndicator size="large" />
+        </View>
+      )}
+    </>
   );
 }
 
 const styles = StyleSheet.create({
   listContent: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  refreshContainer: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: 10,
+  },
+  loadingContainer: {
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
