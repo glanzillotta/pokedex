@@ -25,7 +25,7 @@ const CardContent: React.FC<CardProps> = ({
   isFavourite,
 }) => (
   <>
-    <TouchableWithoutFeedback onPress={onPressFavourite}>
+    <TouchableWithoutFeedback onPress={onPressFavourite} style={styles.touch}>
       <Icon
         name="heart"
         size={20}
@@ -49,18 +49,22 @@ const styles = StyleSheet.create({
     marginTop: 10,
     fontSize: 18,
     fontWeight: 'bold',
-    color: '#333',
+    color: '#ffffff',
     fontFamily: 'Nunito-Bold',
   },
   number: {
     fontSize: 14,
-    color: '#999',
+    color: '#d2d2d2',
     fontFamily: 'Nunito-Regular',
   },
   favourite: {
     position: 'absolute',
     top: 10,
     right: 10,
+  },
+  touch: {
+    height: 20,
+    width: 20,
   },
 });
 
