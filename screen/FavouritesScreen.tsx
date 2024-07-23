@@ -13,7 +13,7 @@ import {PokemonCard, Title} from '../components';
 import {Pokemon} from '../store/favouriteSlice.ts';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-function FavouriteScreen() {
+function FavouritesScreen() {
   const pokemon = useAppSelector(
     (state: RootState) => state.favourites.pokemonList,
   );
@@ -64,4 +64,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default FavouriteScreen;
+export default FavouritesScreen;
