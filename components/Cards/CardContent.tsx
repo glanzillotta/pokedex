@@ -1,12 +1,12 @@
 import React from 'react';
 import {
   GestureResponderEvent,
-  Image,
   StyleSheet,
   Text,
   TouchableWithoutFeedback,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome6';
+import {SvgUri} from 'react-native-svg';
 
 export interface CardProps {
   id: string;
@@ -34,7 +34,7 @@ const CardContent: React.FC<CardProps> = ({
         solid={isFavourite}
       />
     </TouchableWithoutFeedback>
-    <Image source={{uri: imageUrl}} style={styles.image} />
+    {imageUrl && <SvgUri width="100" height="100" uri={imageUrl} />}
     <Text style={styles.name}>{name}</Text>
     <Text style={styles.number}>{id.padStart(3, '0')}</Text>
   </>

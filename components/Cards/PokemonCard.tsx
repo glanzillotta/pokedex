@@ -52,7 +52,7 @@ const PokemonCard = ({pokemon, onPressCard}: PokemonCardProps) => {
       <Card
         id={id}
         name={pokemon.name}
-        imageUrl={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`}
+        imageUrl={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${id}.svg`}
         onPressFavourite={handelFavourite}
         isFavourite={!!pokemonList.find(p => p.name === pokemon.name)}
         backgroundColor={getBackgroundColor(data?.types || [])}
