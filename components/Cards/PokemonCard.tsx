@@ -9,13 +9,18 @@ import {
 import useDispatch from '../../hooks/useDispatch.ts';
 import useAppSelector from '../../hooks/useSelector.ts';
 import {RootState} from '../../store/store.ts';
-import {getBackgroundColor} from '../../utils/coulors.ts';
-import {TouchableWithoutFeedback} from 'react-native';
+import {getBackgroundColor, PokemonType} from '../../utils/colors.ts';
+import {GestureResponderEvent, Pressable} from 'react-native';
 
 interface PokemonCardProps {
   pokemon: Pokemon;
-  onPressCard?: () => void;
+  onPressCard?: (event: GestureResponderEvent) => void;
 }
+
+interface Response {
+  types: PokemonType[];
+}
+
 const PokemonCard = ({pokemon, onPressCard}: PokemonCardProps) => {
   const dispatch = useDispatch();
   const pokemonList = useAppSelector(
@@ -43,7 +48,7 @@ const PokemonCard = ({pokemon, onPressCard}: PokemonCardProps) => {
   };
 
   return (
-    <TouchableWithoutFeedback onPress={onPressCard}>
+    <Pressable onPress={onPressCard}>
       <Card
         id={id}
         name={pokemon.name}
@@ -52,7 +57,7 @@ const PokemonCard = ({pokemon, onPressCard}: PokemonCardProps) => {
         isFavourite={!!pokemonList.find(p => p.name === pokemon.name)}
         backgroundColor={getBackgroundColor(data?.types || [])}
       />
-    </TouchableWithoutFeedback>
+    </Pressable>
   );
 };
 
