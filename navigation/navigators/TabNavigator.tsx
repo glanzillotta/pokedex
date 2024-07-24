@@ -1,18 +1,25 @@
-import {FavoriteScreen, HomeScreen} from '../screen';
+import {FavoriteScreen, HomeScreen} from '../../screen';
 import React from 'react';
 import {
   BottomTabNavigationOptions,
   createBottomTabNavigator,
 } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {BottomTabParamList} from '../types.ts';
+import MainNavigator from './MainNavigator.tsx';
 
-const Tab = createBottomTabNavigator();
+interface TabBarIconProps {
+  focused: boolean;
+}
 
-const renderHouseIcon = ({focused}: {focused: boolean}) => (
-  <Icon name={focused ? 'home' : 'home-outline'} size={20} color="#333" />
-);
-const renderHeartIcon = ({focused}: {focused: boolean}) => (
+const Tab = createBottomTabNavigator<BottomTabParamList>();
+
+const renderHeartIcon = ({focused}: TabBarIconProps) => (
   <Icon name={focused ? 'heart' : 'heart-outline'} size={20} color="#333" />
+);
+
+const renderHouseIcon = ({focused}: TabBarIconProps) => (
+  <Icon name={focused ? 'home' : 'home-outline'} size={20} color="#333" />
 );
 
 function TabNavigator() {
@@ -25,25 +32,27 @@ function TabNavigator() {
     },
   };
 
-  const HomeScreenOptions: BottomTabNavigationOptions = {
-    headerShown: false,
-    tabBarIcon: renderHouseIcon,
-  };
-
   const FavouriteScreenOptions: BottomTabNavigationOptions = {
     headerShown: false,
     tabBarIcon: renderHeartIcon,
+    tabBarLabel: 'Favourites',
+  };
+
+  const MainScreenOptions: BottomTabNavigationOptions = {
+    headerShown: false,
+    tabBarIcon: renderHouseIcon,
+    tabBarLabel: 'Home',
   };
 
   return (
     <Tab.Navigator screenOptions={TabNavigationOptions}>
       <Tab.Screen
-        name="Home"
-        component={HomeScreen}
-        options={HomeScreenOptions}
+        name="Main"
+        component={MainNavigator}
+        options={MainScreenOptions}
       />
       <Tab.Screen
-        name="Favourite"
+        name="Favourites"
         component={FavoriteScreen}
         options={FavouriteScreenOptions}
       />
