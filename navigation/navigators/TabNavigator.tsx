@@ -1,4 +1,4 @@
-import {FavoriteScreen, HomeScreen} from '../../screen';
+import {FavoriteScreen} from '../../screen';
 import React from 'react';
 import {
   BottomTabNavigationOptions,
